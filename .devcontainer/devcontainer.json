@@ -1,0 +1,37 @@
+{
+  "name": "Node.js Development Container",
+  "dockerComposeFile": "../docker-compose.yaml",
+  "service": "node-app",
+  "workspaceFolder": "/usr/src/app",
+  "shutdownAction": "stopCompose",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.docker",
+        "esbenp.prettier-vscode",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "VisualStudioExptTeam.vscodeintellicode-apiusage",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "ms-azuretools.vscode-docker",
+        "rbbit.typescript-hero",
+        "dbaeumer.vscode-eslint",
+        "firsttris.vscode-jest-runner"
+      ],
+      "settings": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true,
+        "eslint.enable": true,
+        "jest.autoEnable": true,
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "postCreateCommand": "npm install",
+  "forwardPorts": [3000],
+  "remoteUser": "node",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/usr/src/app,type=bind",
+    "source=node_modules,target=/usr/src/app/node_modules,type=volume"
+  ]
+}

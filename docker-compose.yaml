@@ -1,0 +1,19 @@
+services:
+  node-app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    user: "node"
+    labels:
+      jest_runner: "true"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app # Bind mount for local files
+      - node_modules:/usr/src/app/node_modules # Anonymous volume for node_modules
+    environment:
+      - NODE_ENV=development
+    command: "tail -f /dev/null"
+
+volumes:
+  node_modules: {}
